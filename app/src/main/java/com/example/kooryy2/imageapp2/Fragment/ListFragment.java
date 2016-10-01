@@ -28,7 +28,7 @@ import com.example.kooryy2.imageapp2.Ulity.NetworkUtility;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends Fragment implements OnItemClick {
+public class ListFragment extends Fragment {
 
 
     private String TAG = ListFragment.class.getSimpleName();
@@ -107,7 +107,9 @@ public class ListFragment extends Fragment implements OnItemClick {
                 mProgressDialog.setTitle("Loading");
                 mProgressDialog.setMessage("Doi Trong Giay Lat");
                 mProgressDialog.dismiss();
+                resultList = response.results;
                 GalleryAdapter mAdapter = new GalleryAdapter(resultList);
+                mAdapter.setOnItemClick(new OnItemClickListener());
                 recyclerView.setAdapter(mAdapter);
             }
         });
@@ -116,20 +118,36 @@ public class ListFragment extends Fragment implements OnItemClick {
     }
 
 
-    @Override
+    /*@Override
     public void onItemClicked(View view, int position) {
+        Log.e("X_list_fragment", "----0");
         DetainFragment fragment = new DetainFragment();
         Bundle bundle = new Bundle();
         bundle.putParcelableArrayList("IMAGE" , (ArrayList<? extends Parcelable>) resultList);
         bundle.putInt("POSITION" , position);
         fragment.setArguments(bundle);
-        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Contain ,DetainFragment.newInstance()).commit();
+        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Contain , fragment).commit();
+        Log.e("X_list_fragment", "----1");
+    }*/
 
-    }
+    private class OnItemClickListener implements OnItemClick {
 
-    @Override
-    public void onLongClicked(View view, int position) {
+        @Override
+        public void onItemClicked(View view, int position) {
+            Log.e("X_list_fragment", "----0");
+            DetainFragment fragment = new DetainFragment();
+            Bundle bundle = new Bundle();
+            bundle.putParcelableArrayList("IMAGE" , (ArrayList<? extends Parcelable>) resultList);
+            bundle.putInt("POSITION" , position);
+            fragment.setArguments(bundle);
+            getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.Contain , fragment).commit();
+            Log.e("X_list_fragment", "----1");
+        }
 
+        @Override
+        public void onLongClicked(View view, int position) {
+
+        }
     }
 
     @Override

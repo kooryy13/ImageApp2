@@ -28,7 +28,8 @@ public class ViewpageAdapter extends PagerAdapter {
     private PhotoViewAttacher mAttacher;
     private List<Result> resultList;
 
-    public ViewpageAdapter(List<Result> resultList) {
+    public ViewpageAdapter(Context mContext, List<Result> resultList) {
+        this.mContext = mContext;
         this.resultList = resultList;
     }
 
@@ -38,7 +39,7 @@ public class ViewpageAdapter extends PagerAdapter {
         View rootView = layoutInflater.inflate(R.layout.image_fullscreen, container, false);
 
         image_preview = (ImageView) rootView.findViewById(R.id.image_preview);
-        mAttacher = new PhotoViewAttacher(image_preview);
+//        mAttacher = new PhotoViewAttacher(image_preview);
 
         Glide.with(mContext).load(resultList.get(position).urls.full).diskCacheStrategy(DiskCacheStrategy.ALL).
                 crossFade().into(image_preview);

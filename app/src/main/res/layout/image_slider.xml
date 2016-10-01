@@ -3,6 +3,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v4.view.ViewPager
+        android:id="@+id/viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true" />
+
     <TextView
         android:id="@+id/lbl_count"
         android:layout_width="wrap_content"
@@ -27,7 +33,7 @@
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/white"
+            android:textColor="@android:color/black"
             android:textSize="16dp"
             android:textStyle="bold" />
 
@@ -37,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/black"
+            android:text="09434378"/>
 
     </LinearLayout>
 
@@ -55,14 +62,5 @@
         android:layout_marginRight="25dp"
         android:background="@color/colorPrimaryDark"
         android:src="@drawable/ic_assignment_returned_white_24dp" />
-
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    android:background="@android:color/black"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

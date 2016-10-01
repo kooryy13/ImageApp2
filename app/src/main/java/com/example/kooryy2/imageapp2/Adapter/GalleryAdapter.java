@@ -41,10 +41,6 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryViewHolder> {
 
     @Override
     public int getItemCount() {
-        if (resultList != null){
-            return resultList.size();
-        }
-
-        return 0;
+        return resultList.size();
     }
 }

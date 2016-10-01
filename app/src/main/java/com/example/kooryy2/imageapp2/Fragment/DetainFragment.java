@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -17,6 +18,7 @@ import com.example.kooryy2.imageapp2.API.Result;
 import com.example.kooryy2.imageapp2.Adapter.ViewpageAdapter;
 import com.example.kooryy2.imageapp2.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -70,12 +72,13 @@ public class DetainFragment extends Fragment {
         fap = (FloatingActionButton) rootView.findViewById(R.id.fap);
         lblCount = (TextView) rootView.findViewById(R.id.lbl_count);
         date = (TextView) rootView.findViewById(R.id.date);
+        date.setText("1234455");
         title = (TextView) rootView.findViewById(R.id.title);
         viewPager = (ViewPager) rootView.findViewById(R.id.viewpager);
 
-        ViewpageAdapter vpAdapter = new ViewpageAdapter(resultList);
+        ViewpageAdapter vpAdapter = new ViewpageAdapter(getActivity(), resultList);
         viewPager.setAdapter(vpAdapter);
-        viewPager.addOnAdapterChangeListener((ViewPager.OnAdapterChangeListener) vpOnPageChangeListener);
+       // viewPager.addOnAdapterChangeListener((ViewPager.OnAdapterChangeListener) vpOnPageChangeListener);
 
         selectCurrentItem(selectposition);
         return rootView;
@@ -99,12 +102,12 @@ public class DetainFragment extends Fragment {
     };
 
     private void selectCurrentItem (int position){
-        viewPager.setCurrentItem(position,false);
-        disPlayMetaInfo(selectposition , (Result) resultList);
+        viewPager.setCurrentItem(position, false);
+        disPlayMetaInfo(selectposition , resultList.get(position));
     }
 
     private void disPlayMetaInfo(int position , Result result) {
-        lblCount.setText(result.categories.get(position+1).photoCount);
+//        lblCount.setText(result.categories.get(position+1).photoCount);
         date.setText(result.createdAt);
         title.setText(result.categories.get(0).title);
     }
@@ -120,12 +123,6 @@ public class DetainFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     @Override
